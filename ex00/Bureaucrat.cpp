@@ -1,30 +1,110 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
+//	####################
+//	Constructor & Destructor
+Bureaucrat::Bureaucrat(void) : _name("Default"), _grade(150)
+{
+	std::cout << "Default constructor called" << std::endl;
+}
+
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	if (grade < 1)
-		throw std::runtime_error("Grade trop haut!");
+		throw GradeTooHighException();
 	if (grade > 150)
-		throw std::runtime_error("Grade trop bas!");
+		throw GradeTooLowException();
 	this->_grade = grade;
-	this->_name = name;
 	std::cout	<< "Bureaucrat "
 				<< CYAN
-				<< this->_name
+				<< this->getName()
 				<< RESET
 				<< " has been created with a grade of "
 				<< CYAN
-				<< this->_grade
+				<< this->getGrade()
 				<< RESET
 				<< std::endl;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& copy) : _name(copy._name + " (copy)")
+{
+	std::cout << "Copy construcor called" << std::endl;
+	*this = copy;
 }
 
 Bureaucrat::~Bureaucrat()
 {
 	std::cout	<< "Bureaucrat "
 				<< CYAN
-				<< this->_name
+				<< this->getName()
 				<< RESET
 				<< " has been deleted"
 				<< std::endl;
+}
+
+//	####################
+//	Operator Overload
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
+{
+	if (this != &obj)
+	{
+		setGrade(obj.getGrade());
+	}
+	return (*this);
+}
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
+{
+	os	<< CYAN
+		<< obj.getName()
+		<< RESET
+		<< ", bureaucrat grade "
+		<< CYAN
+		<< obj.getGrade()
+		<< RESET;
+	return (os);
+}
+
+//	####################
+//	Getters & Setters
+std::string Bureaucrat::getName() const
+{
+	return (this->_name);
+}
+
+int	Bureaucrat::getGrade() const
+{
+	return (this->_grade);
+}
+
+void Bureaucrat::setGrade(const int grade)
+{
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
+	this->_grade = grade;
+}
+
+//	####################
+//	Exeption classes
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return (RED "Grade too high" RESET);
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return (RED "Grade too low" RESET);
+}
+
+//	####################
+//	Methodes
+void Bureaucrat::upGrade()
+{
+	setGrade(getGrade() - 1);
+}
+
+void Bureaucrat::downGrade()
+{
+	setGrade(getGrade() + 1);
 }
