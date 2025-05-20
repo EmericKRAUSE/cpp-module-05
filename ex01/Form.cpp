@@ -65,6 +65,16 @@ Form& Form::operator=(const Form& obj)
 	return (*this);
 }
 
+std::ostream &operator<<(std::ostream &os, const Form &obj)
+{
+	os	<< CYAN << obj.getName() << RESET
+		<< " grade to sign: "
+		<< CYAN << obj.getGradeRequiredToSign() << RESET
+		<< " grade to execute: "
+		<< CYAN << obj.getGradeRequiredToExecute() << RESET;
+	return (os);
+}
+
 //	####################
 //	Getters & Setters
 const std::string& Form::getName() const
