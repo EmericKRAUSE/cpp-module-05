@@ -38,12 +38,9 @@ int main()
 		std::cout << b1 << std::endl;
 		Bureaucrat b2(b1);
 		std::cout << b2 << std::endl;
+		b1.upGrade();
 	}
-	catch (const Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException &e)
+	catch (const std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
