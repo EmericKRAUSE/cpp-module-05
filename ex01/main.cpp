@@ -18,7 +18,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -35,7 +35,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -52,7 +52,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -69,6 +69,6 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 	}
 }

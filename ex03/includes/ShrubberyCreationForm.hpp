@@ -1,0 +1,36 @@
+#pragma once
+
+# include "AForm.hpp"
+
+# include <string>
+# include <stdexcept>
+# include <iostream>
+# include <iostream>
+# include <fstream>
+
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define CYAN "\033[36m"
+# define RESET "\033[0m"
+
+class Bureaucrat;
+
+class ShrubberyCreationForm : public AForm
+{
+	private:
+		const std::string _target;
+
+	public:
+		//	####################
+		//	Constructor & Destructor
+		ShrubberyCreationForm(const std::string& target);
+		~ShrubberyCreationForm();
+
+		//	####################
+		//	Getters & Setters
+		const std::string& getTarget() const;
+
+		//	####################
+		//	Methodes
+		void execute(const Bureaucrat& executor) const;
+};

@@ -123,7 +123,7 @@ void Bureaucrat::signForm(AForm& form) const
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr	<< "Bureaucrat "
+		std::cout	<< "Bureaucrat "
 					<< CYAN << getName() << RESET
 					<< " couldn't sign form "
 					<< CYAN << form.getName() << RESET
@@ -146,7 +146,7 @@ void Bureaucrat::executeForm(AForm& form) const
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr	<< "Bureaucrat "
+		std::cout	<< "Bureaucrat "
 					<< CYAN << getName() << RESET
 					<< " couldn't execute form "
 					<< CYAN << form.getName() << RESET
